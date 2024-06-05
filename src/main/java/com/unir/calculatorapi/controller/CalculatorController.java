@@ -1,7 +1,6 @@
 package com.unir.calculatorapi.controller;
 
 
-import com.unir.calculatorapi.model.pojo.Result;
 import com.unir.calculatorapi.model.pojo.Suma;
 import com.unir.calculatorapi.model.request.SumaRestaRequest;
 import com.unir.calculatorapi.service.CalculatorServiceImpl;
@@ -35,7 +34,7 @@ public class CalculatorController {
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = SumaRestaRequest.class))))
     @ApiResponse(
             responseCode = "201",
-            content = @Content(mediaType = "application/json", schema = @Schema(implementation = Result.class)))
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = Suma.class)))
     public ResponseEntity<Suma> addProduct(@RequestBody SumaRestaRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.suma(request));
     }

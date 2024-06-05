@@ -23,6 +23,6 @@ public class Suma {
     @Column(name = "numeros")
     private List<Double> numeros;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    Result result;
+    @Column(name = "result")
+    private Double result;
 }

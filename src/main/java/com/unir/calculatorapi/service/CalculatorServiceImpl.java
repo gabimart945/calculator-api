@@ -1,15 +1,19 @@
 package com.unir.calculatorapi.service;
 
-import com.unir.calculatorapi.model.pojo.Result;
+import com.unir.calculatorapi.data.SumaRepository;
 import com.unir.calculatorapi.model.pojo.Suma;
 import com.unir.calculatorapi.model.request.SumaRestaRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
 @Slf4j
 public class CalculatorServiceImpl implements CalculatorService {
+
+    @Autowired
+    private SumaRepository sumaRepository;
 
     @Override
     public Suma suma(SumaRestaRequest request){
@@ -20,11 +24,7 @@ public class CalculatorServiceImpl implements CalculatorService {
             total += request.getNumeros().get(i);
         }
 
-
-        Result result = Result.builder().result(total).build();
-        Suma suma = Suma.builder().numeros(request.getNumeros()).result(result).build();
-
-
-        return suma;
+        Suma suma = Suma.builder().numeros(request.getNumeros()).result(total).build();
+        return sumaRepository.save(suma);
     }
 }
